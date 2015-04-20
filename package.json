@@ -1,6 +1,6 @@
 {
     "name": "creolife-markdown-api",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Markdown API to handle parsing of markdown files",
     "author": "Miroslaw Ratman <mirek.ratman@gmail.com>",
     "license": "MIT",
