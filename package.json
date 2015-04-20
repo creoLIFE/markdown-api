@@ -1,0 +1,30 @@
+{
+    "name": "creolife-markdown-api",
+    "version": "1.0.0",
+    "description": "Markdown API to handle parsing of markdown files",
+    "author": "Miroslaw Ratman <mirek.ratman@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "keywords": [
+        "markdown",
+        "json",
+        "parser"
+    ],
+    "main": "app.js",
+    "repository": [
+        {
+            "type": "git",
+            "url": "https://github.com/creoLIFE/markdown-api.git"
+        }
+    ],
+    "dependencies": {
+        "express": "~4.12.*",
+        "lodash": "~3.6.*",
+        "body-parser": "~1.12.*",
+        "multer": "~0.1.*",
+        "falkor": "~1.5.*",
+        "creolife-markdown-to-json": "git+ssh://git@github.com:creolife/markdown-to-json.git#1.0.6"
+    }
+}
