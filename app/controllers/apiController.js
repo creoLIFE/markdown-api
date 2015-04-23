@@ -4,7 +4,6 @@
 
 var config = require('../config/config');
 var express = require('express');
-var _ = require('lodash');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var markdownParser = require('creolife-markdown-to-json');
@@ -33,11 +32,10 @@ module.exports = {
      * @param [function] next - callback function
      * @return [void]
      */
-    parseMarkdown: function (req, res, next) {
+    parseMarkdownFile: function (req, res, next) {
         try {
-            console.log(req.files.markdown);
-            markdownParser.parse({fileName: req.files.markdown.path, depth:2}, function(data){
-                fs.unlink(req.files.photo.path, function (err) {
+            markdownParser.parseFile({fileName: req.files.markdown.path, depth:2}, function(data){
+                fs.unlink(req.files.markdown.path, function (err) {
                     if (err) return res.status(401).send({type: "TemporaryFileNotDeleted", message: "Temporary file wasnt deleted."});
                 });
                 res.status(200).send(JSON.stringify(data));
@@ -46,5 +44,24 @@ module.exports = {
         catch (e) {
             return res.status(500).send({type: "InternalServerError", message: "Error occured durring file parse."});
         }
+    },
+
+    /**
+     * Method will parse passed markdown string and send JSON as a response
+     * @param [object] req
+     * @param [object] res
+     * @param [function] next - callback function
+     * @return [void]
+     */
+    parseMarkdownContent: function (req, res, next) {
+        try {
+            markdownParser.parse({content: req.rawBody, depth:2}, function(data){
+                res.status(200).send(JSON.stringify(data));
+            });
+        }
+        catch (e) {
+            return res.status(500).send({type: "InternalServerError", message: "Error occured durring file parse."});
+        }
     }
+
 }

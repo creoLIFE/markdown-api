@@ -11,5 +11,6 @@ var controllers = require('../controllers')
  */
 module.exports = function (app) {
     app.get('/', controllers.index);
-    app.post('/parse', controllers.api.parseMarkdown);
+    app.post('/parse-file', controllers.api.parseMarkdownFile);
+    app.post('/parse-content', controllers.api.parseMarkdownContent);
 };
