@@ -55,6 +55,7 @@ module.exports = {
      */
     parseMarkdownContent: function (req, res, next) {
         try {
+            console.log(req.rawBody);
             markdownParser.parse({content: req.rawBody, depth:2}, function(data){
                 res.status(200).send(JSON.stringify(data));
             });
