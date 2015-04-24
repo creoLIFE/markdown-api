@@ -7,6 +7,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var markdownParser = require('creolife-markdown-to-json');
+var _ = require('lodash');
 
 /**
  * Method will generate random number
@@ -34,7 +35,7 @@ module.exports = {
      */
     parseMarkdownFile: function (req, res, next) {
         try {
-            markdownParser.parseFile({fileName: req.files.markdown.path, depth:2}, function(data){
+            markdownParser.parseFile({fileName: req.files.markdown.path, depth: 2}, function (data) {
                 fs.unlink(req.files.markdown.path, function (err) {
                     if (err) return res.status(401).send({type: "TemporaryFileNotDeleted", message: "Temporary file wasnt deleted."});
                 });
@@ -55,8 +56,9 @@ module.exports = {
      */
     parseMarkdownContent: function (req, res, next) {
         try {
-            console.log(req.rawBody);
-            markdownParser.parse({content: req.rawBody, depth:2}, function(data){
+            var usersParams = _.pick(req.params, 'depth');
+
+            markdownParser.parse({content: req.rawBody, depth: usersParams.depth || 2}, function (data) {
                 res.status(200).send(JSON.stringify(data));
             });
         }

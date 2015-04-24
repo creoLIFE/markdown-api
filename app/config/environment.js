@@ -7,7 +7,6 @@ var express = require('express');
 var config = require('./config');
 var multer = require('multer');
 var bodyParser = require('body-parser');
-var getRawBody = require('raw-body')
 
 /**
  * Environment module exports
@@ -32,7 +31,7 @@ module.exports = function (app) {
         });
     });
     app.use(function (req, res, next) {
-        res.setHeader('Access-Control-Allow-Origin', 'http://markdown-spa.local');
+        res.setHeader('Access-Control-Allow-Origin', config.accessControlAllowOriginDomain);
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
         res.setHeader('Access-Control-Allow-Credentials', true);

@@ -10,5 +10,6 @@ var path = require('path');
  */
 module.exports = {
     path: path.normalize(path.join(__dirname, '..')),
-    port: process.env.NODE_PORT || 8080
+    port: process.env.NODE_PORT || 8080,
+    accessControlAllowOriginDomain: "http://markdown-spa.local"
 };

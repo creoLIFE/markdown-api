@@ -13,4 +13,5 @@ module.exports = function (app) {
     app.get('/', controllers.index);
     app.post('/parse-file', controllers.api.parseMarkdownFile);
     app.post('/parse-content', controllers.api.parseMarkdownContent);
+    app.post('/parse-content/:depth', controllers.api.parseMarkdownContent);
 };
